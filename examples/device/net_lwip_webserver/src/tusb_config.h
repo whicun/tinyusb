@@ -107,7 +107,7 @@ extern "C" {
 
 // Must be >> MTU
 // Can be set to 2048 without impact
-#define CFG_TUD_NCM_IN_NTB_MAX_SIZE (3 * TCP_MSS + 100)
+#define CFG_TUD_NCM_IN_NTB_MAX_SIZE (1 * TCP_MSS + 100)
 
 // Must be >> MTU
 // Can be set to smaller values if wNtbOutMaxDatagrams==1
@@ -115,11 +115,11 @@ extern "C" {
 
 // Number of NCM transfer blocks for reception side
 #ifndef CFG_TUD_NCM_OUT_NTB_N
-  #define CFG_TUD_NCM_OUT_NTB_N 2
+  #define CFG_TUD_NCM_OUT_NTB_N 1
 #endif
 
 #ifndef CFG_TUD_NCM_IN_NTB_N
-  #define CFG_TUD_NCM_IN_NTB_N 2
+  #define CFG_TUD_NCM_IN_NTB_N 1
 #endif
 
 //--------------------------------------------------------------------
