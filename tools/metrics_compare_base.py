@@ -215,7 +215,11 @@ def main():
     print(f'[1/5] Setting up {args.base_branch} worktree...')
     if os.path.isdir(worktree_dir):
         run(['git', '-C', TINYUSB_ROOT, 'worktree', 'remove', '--force', worktree_dir])
-    ret = run(['git', '-C', TINYUSB_ROOT, 'worktree', 'add', worktree_dir, args.base_branch])
+    # --detach: check out the ref at a detached HEAD instead of trying to claim the
+    # branch. Lets us add a worktree of `master` even if master is already checked
+    # out elsewhere (main repo, another worktree).
+    ret = run(['git', '-C', TINYUSB_ROOT, 'worktree', 'add', '--detach',
+               worktree_dir, args.base_branch])
     if ret.returncode != 0:
         print(f'Error creating worktree: {ret.stderr}')
         sys.exit(1)
